@@ -1,0 +1,8 @@
+S1 S A B
+a b c d
+S1->S
+S->a A d
+S->b A B
+A->c A
+A->c
+B->d
