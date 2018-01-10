@@ -10,7 +10,6 @@ class Checker:
         self.workingStack.append("$")
         self.workingStack.append(0)
         self.prodRules = []
-        self.prodRules.append("epsilon")
 
         print(self.workingStack, self.input)
 
