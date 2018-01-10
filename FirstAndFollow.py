@@ -1,7 +1,4 @@
-
-#epsilon = ε
-
-
+# coding=utf-8
 class FirstAndFollow:
     def __init__(self,grammar):
         self.grammar = grammar
@@ -9,8 +6,6 @@ class FirstAndFollow:
         self.follow = {}
         self.findFirst()
         self.findFollow()
-
-
 
     def initFirst(self):
 

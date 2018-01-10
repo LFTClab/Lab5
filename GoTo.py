@@ -116,7 +116,7 @@ class GoToGraph:
         self.grammar = grammar
         gt = GoTo('$', 0, self.grammar)
         gt.initialiseProductionRules(self.grammar.productionrules[0])
-        print(gt)
+        #print(gt)
         self.iterationList = [gt]
         self.nextIterations = {}
         self.derivatedFrom = {}
@@ -168,19 +168,19 @@ class GoToGraph:
 
 
     def getGraph(self,key):
-        print(self.nextIterations)
-        print(self.derivatedFrom)
-        print(self.duplicate)
+        #print(self.nextIterations)
+        #print(self.derivatedFrom)
+        #print(self.duplicate)
         newprodRules = []
         newPredictions = []
-        print("iterno:",key)
-        print("derivatedFrom:",self.derivatedFrom[key])
+        #print("iterno:",key)
+        #print("derivatedFrom:",self.derivatedFrom[key])
         prevIter = self.derivatedFrom[key][0]
-        print("#########", prevIter)
+        #print("#########", prevIter)
         if(prevIter in self.nextIterations.keys() or prevIter == 0):
 
             prevProdRule = self.getProdRuleByLiteral(self.nextIterations[key],prevIter)
-            print("Prev:",prevProdRule)
+            #print("Prev:",prevProdRule)
             for elem in prevProdRule:
                 gt = GoTo(prevProdRule[elem],key,self.grammar)
                 gt.getProdRules(elem)
@@ -199,7 +199,7 @@ class GoToGraph:
             gt.setProdRules(newprodRules)
             gt.setPredictions(newPredictions)
             if(self.iterationExists(gt) == -1):
-                print(gt)
+                #print(gt)
                 #print("oooooooookkkkkkkkk")
                 self.iterationList.append(gt)
                 #if(len(self.iterationList) == 14) :
@@ -208,8 +208,8 @@ class GoToGraph:
 
             else:
                 #self.iterationList.append(gt)
-                print("keyyyyyyyyyyy",key)
-                print("duplicate", gt)
+                #print("keyyyyyyyyyyy",key)
+                #print("duplicate", gt)
                 self.cycles[key] = self.nextIterations[key]
                 del(self.nextIterations[key])
                 del(self.derivatedFrom[key])
