@@ -52,6 +52,8 @@ class Checker:
                     self.workingStack.append(int(letter))
                     self.input.pop(0)
                     reduce = True
+                elif letter != 'acc':
+                    return 'error'
 
             if reduce == False:
                 print("yallla")
