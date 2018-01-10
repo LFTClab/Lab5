@@ -19,7 +19,6 @@ class Table:
                 if look_for in self.graph.derivatedFrom[i]:
                     column = self.graph.nextIterations[i]
                     self.table[look_for].row[column] = 'S' + str(i)
-                    shift = True
             if shift == False:
                 for i in self.graph.iterationList:
                     if i.id == look_for:

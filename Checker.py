@@ -16,35 +16,45 @@ class Checker:
 
     def parse(self):
         #verify working stack has a production rule
-        productionRule = ProductionRule([],[])
-        count = 0
-        reduce = False
-        for item in self.workingStack[::-1]:
-            #print(item)
-            if item in self.table.states.row.keys():
-                productionRule.right.insert(0, item)
-                count += 1
-                for i in self.table.graph.grammar.productionrules:
-                    production = self.table.graph.grammar.productionrules[i]
-                    if productionRule.__eq__(production):
-                        self.input.pop(0)
-                        del self.workingStack[(len(self.workingStack)-count):(len(self.workingStack))]
-                        self.prodRules.append(i)
-                        reduce = True
-        if reduce:
-            pass
-        else:
-            letter = self.table.table[self.workingStack[-1]].row[self.input[0]]
-            if letter != '':
-                letter = letter[1:]
-                self.workingStack.append(self.input[0])
-                self.workingStack.append(letter)
-                self.input.pop(0)
-                reduce = True
+        while True:
+            print("john")
+            print(self.workingStack, self.input, self.prodRules)
+            productionRule = ProductionRule([],[])
+            count = 0
+            reduce = False
+            for item in reversed(self.workingStack):
+                #print(item)
+                if item in self.table.states.row.keys():
+                    #print(item)
+                    productionRule.right.insert(0, item)
+                    count += 2
+                    for i in self.table.graph.grammar.productionrules:
+                        production = self.table.graph.grammar.productionrules[i]
+                        if productionRule.right == production.right and i != 0:
+                            #self.input.pop(0)
+                            del self.workingStack[(len(self.workingStack)-count):(len(self.workingStack))]
+                            cifra = self.workingStack[-1]
+                            toAdd = self.table.table[cifra].row['S']
+                            if toAdd != 'acc':
+                                print("toAdd", toAdd)
+                                self.workingStack.append('S')
+                                self.workingStack.append(int(toAdd[1:]))
+                                self.prodRules.insert(0, i)
+                                reduce = True
+                            else:
+                                return "acc"
 
-        if reduce == False:
-            letter = self.table.table[self.workingStack[-1]].row[self.input[0]]
-            if letter == 'acc':
-                return 'acc'
+            if reduce == False:
+                letter = self.table.table[self.workingStack[-1]].row[self.input[0]]
+                if letter != '' and letter != 'acc':
+                    letter = letter[1:]
+                    self.workingStack.append(self.input[0])
+                    self.workingStack.append(int(letter))
+                    self.input.pop(0)
+                    reduce = True
 
-        print(self.workingStack, self.input, self.prodRules)
+            if reduce == False:
+                print("yallla")
+                letter = self.table.table[self.workingStack[-1]].row[self.input[0]]
+                if letter == 'acc':
+                    return 'acc'
