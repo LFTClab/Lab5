@@ -1,6 +1,7 @@
 from GoTo import GoTo, GoToGraph
 from ProductionRule import ProductionRule
 from States import States
+from Checker import *
 from Table import *
 
 class Grammar:
@@ -34,13 +35,26 @@ def printGotoGraph(gt):
     for i in range(0, len(gt.productionRules)):
         print("[" + str(gt.productionRules[i]) + ", " + gt.predictions[i] + "]")
 
+def readSequence(fileName):
+    f = open(fileName, "r")
+    l = []
+    for elem in f.readline().strip():
+        l.append(elem)
+    return l
+
 if __name__ == '__main__':
     g = Grammar("input2.txt")
     graph = GoToGraph(g)
     print("+++++++++++++++++++++++++++")
-    print(graph.nextIterations)
-    print(graph.derivatedFrom)
-    print(graph.iterationList)
+    #print(graph.nextIterations)
+    #print(graph.derivatedFrom)
+    #print(graph.iterationList)
     states = States(g.nonterminals, g.terminals)
     table = Table(states, graph)
+    #   transition(3 lists - working stack($0), sequence, production rules)
+    #   check if working stack has a valid production rule and replace with S followed by ...
+    inputSequence = readSequence("sequence.in")
+    checker = Checker(table, inputSequence)
+    print("+++++++++++++++++++++++++++")
+    checker.parse()
 

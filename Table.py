@@ -8,9 +8,6 @@ class Table:
         self.table = {}
         self.initTable()
 
-    #   transition(3 lists - working stack($0), sequence, production rules)
-    #   check if working stack has a valid production rule and replace with S followed by ...
-
     def initTable(self):
         for i in self.graph.iterationList:
             self.table[i.id] = copy.deepcopy(self.states)
