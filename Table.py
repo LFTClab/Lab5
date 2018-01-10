@@ -19,7 +19,8 @@ class Table:
                 if look_for in self.graph.derivatedFrom[i]:
                     column = self.graph.nextIterations[i]
                     self.table[look_for].row[column] = 'S' + str(i)
-            if shift == False:
+                    shift = True
+            if shift == False or shift == True:
                 for i in self.graph.iterationList:
                     if i.id == look_for:
                         right = i.productionRules[0].right
