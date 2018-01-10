@@ -16,7 +16,6 @@ class Checker:
     def parse(self):
         #verify working stack has a production rule
         while True:
-            print("john")
             print(self.workingStack, self.input, self.prodRules)
             productionRule = ProductionRule([],[])
             count = 0
@@ -35,7 +34,6 @@ class Checker:
                             cifra = self.workingStack[-1]
                             toAdd = self.table.table[cifra].row['S']
                             if toAdd != 'acc':
-                                print("toAdd", toAdd)
                                 self.workingStack.append('S')
                                 self.workingStack.append(int(toAdd[1:]))
                                 self.prodRules.insert(0, i)
@@ -55,7 +53,6 @@ class Checker:
                     return 'error'
 
             if reduce == False:
-                print("yallla")
                 letter = self.table.table[self.workingStack[-1]].row[self.input[0]]
                 if letter == 'acc':
                     return 'acc'

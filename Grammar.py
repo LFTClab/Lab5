@@ -56,5 +56,10 @@ if __name__ == '__main__':
     inputSequence = readSequence("sequence.in")
     checker = Checker(table, inputSequence)
     print("+++++++++++++++++++++++++++")
-    checker.parse()
+    result = checker.parse()
+    if result == 'error':
+        #sorry :(
+        print(result)
+    else:
+        print("ACC", result)
 
