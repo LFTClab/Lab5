@@ -33,11 +33,11 @@ class Checker:
                             #self.input.pop(0)
                             del self.workingStack[(len(self.workingStack)-count):(len(self.workingStack))]
                             cifra = self.workingStack[-1]
-                            toAdd = self.table.table[cifra].row[production.left[0]]
+                            toAdd = self.table.table[cifra].row[production.left]
                             #print("here", toAdd)
                             if toAdd != 'acc' and toAdd != '':
                                 #print("vvvv", toAdd)
-                                self.workingStack.append(production.left[0])
+                                self.workingStack.append(production.left)
                                 self.workingStack.append(int(toAdd[1:]))
                                 self.prodRules.insert(0, i)
                                 reduce = True
