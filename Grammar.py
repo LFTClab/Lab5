@@ -1,4 +1,5 @@
 from FinalTree import FinalTree
+from FirstAndFollow import FirstAndFollow
 from GoTo import GoTo, GoToGraph
 from ProductionRule import ProductionRule
 from States import States
@@ -39,12 +40,15 @@ def printGotoGraph(gt):
 def readSequence(fileName):
     f = open(fileName, "r")
     l = []
-    for elem in f.readline().strip():
+    for elem in f.readline().split(" "):
         l.append(elem)
     return l
 
 if __name__ == '__main__':
-    g = Grammar("input.txt")
+    g = Grammar("programinput.txt")
+    ff = FirstAndFollow(g)
+    print(ff.first)
+    print(ff.follow)
     graph = GoToGraph(g)
     print("+++++++++++++++++++++++++++")
     #print(graph.nextIterations)
@@ -54,7 +58,7 @@ if __name__ == '__main__':
     table = Table(states, graph)
     #   transition(3 lists - working stack($0), sequence, production rules)
     #   check if working stack has a valid production rule and replace with S followed by ...
-    inputSequence = readSequence("sequence.in")
+    inputSequence = readSequence("programsequence.in")
     checker = Checker(table, inputSequence)
     print("+++++++++++++++++++++++++++")
     result = checker.parse()

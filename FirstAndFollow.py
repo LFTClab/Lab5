@@ -35,7 +35,7 @@ class FirstAndFollow:
         # TODO: de tratat cazul in care exista ε intr-o regula de productie ( a 3-a liniuta)
 
         self.initFirst()
-        for nonterm in self.grammar.nonterminals:
+        for nonterm in list(reversed(self.grammar.nonterminals)):
             for i in range(0,len(self.grammar.productionrules)):
                 if nonterm == self.grammar.productionrules[i].left:
                     #print(nonterm+"....."+str(self.grammar.productionrules[i]))
@@ -43,13 +43,20 @@ class FirstAndFollow:
                         if self.grammar.productionrules[i].right[0] not in self.first[nonterm]:
                             self.first[nonterm].append(self.grammar.productionrules[i].right[0])
 
-        for nonterm in self.grammar.nonterminals:
+        first = False
+        for nonterm in list(reversed(self.grammar.nonterminals)):
+            first = False
+            #if nonterm == 'expr':
+                #print("???")
             for i in range(0,len(self.grammar.productionrules)):
                 if nonterm == self.grammar.productionrules[i].left:
-                    if self.grammar.productionrules[i].right[0] in self.grammar.nonterminals:
-                        for elem in self.first[self.grammar.productionrules[i].right[0]]:
-                            if elem not in self.first[nonterm]:
-                                self.first[nonterm].append(elem)
+                    for j in self.grammar.productionrules[i].right:
+                        if j in self.grammar.nonterminals and self.grammar.productionrules[i].right[0] not in self.grammar.terminals and first == False:
+                            for elem in self.first[j]:
+                                if elem not in self.first[nonterm]:
+                                    self.first[nonterm].append(elem)
+                                    first = True
+
 
         #print("First:",self.first)
 
