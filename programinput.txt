@@ -1,20 +1,21 @@
-program mainfunction content declarations listvar type listofstmt stmt assignstmt expr operator inputstmt outputstmt condstmt loopstmt IDENTIFIER CONSTANT
-PUBLIC CLASS STATIC VOID MAIN STRING ARGS INT BOOLEAN DOUBLE READ PRINT IF ELSE WHILE { } ( ) [ ] ; , = + - * / > < NE EQ LE GE a 2
-program->PUBLIC CLASS IDENTIFIER { mainfunction } ;
-mainfunction->PUBLIC STATIC VOID MAIN ( STRING [ ] ARGS ) { content } ;
-content->declarations listofstmt ;
-declarations->type listvar ;
-declarations->type listvar ; declarations ;
+program mainfunction content declarations listvar type listofstmt stmt assignstmt expr operator inputstmt outputstmt condstmt loopstmt IDENTIFIER CONSTANT S1
+PUBLIC CLASS STATIC VOID MAIN STRING ARGS INT BOOLEAN DOUBLE READ PRINT IF ELSE WHILE { } ( ) [ ] , = + - * / > < NE EQ LE GE a 2
+S1->program
+program->PUBLIC CLASS IDENTIFIER { mainfunction }
+mainfunction->PUBLIC STATIC VOID MAIN ( STRING [ ] ARGS ) { content }
+content->declarations listofstmt
+declarations->type listvar
+declarations->type listvar declarations
 listvar->IDENTIFIER
-listvar->IDENTIFIER , listvar ;
+listvar->IDENTIFIER , listvar
 type->INT
 type->BOOLEAN
 type->DOUBLE
 listofstmt->stmt
-listofstmt->stmt listofstmt ;
-stmt->assignstmt ;
-stmt->inputstmt ;
-stmt->outputstmt ;
+listofstmt->stmt listofstmt
+stmt->assignstmt
+stmt->inputstmt
+stmt->outputstmt
 stmt->condstmt
 stmt->loopstmt
 assignstmt->IDENTIFIER = expr

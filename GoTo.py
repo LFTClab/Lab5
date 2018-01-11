@@ -58,9 +58,9 @@ class GoTo:
             newList.append(elem)
 
         p = ProductionRule(prodRule.left,newList)
-        print("!!!!!!!",p)
-        print(self.productionRules)
-        print(self.predictions)
+        #print("!!!!!!!",p)
+        #print(self.productionRules)
+        #print(self.predictions)
         if self.findProd(p) == -1 :
             self.productionRules.append(p)
         else:

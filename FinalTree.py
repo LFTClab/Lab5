@@ -1,34 +1,38 @@
 class FinalTree:
     def __init__(self, grammar, checker):
+        self.terminals = grammar.terminals
         self.productionRules = grammar.productionrules
         self.order = checker.prodRules
-        self.finalTree = [grammar.nonterminals[1]]
+        self.finalTree = []
         self.computeFinalTree()
 
     def computeFinalTree(self):
         newList = []
-        workingList = []
+        #workingList = []
+        self.finalTree.append(self.productionRules[0].right)
         index = 0
-        #print(self.finalTree)
+        # print(self.finalTree)
         while index < len(self.order):
-            #print("---", self.order[index])
-            #print("---", self.productionRules[self.order[index]])
-            if self.finalTree[-1] == 'S':
-                self.finalTree.append(self.productionRules[self.order[index]].right)
-                index+=1
+            # print("---", self.order[index])
+            # print("---", self.productionRules[self.order[index]])
+
+            if index == 0:
+                self.finalTree.append(self.productionRules[int(self.order[index])].right)
+                index += 1
             else:
                 newList = self.finalTree[-1]
                 newList = list(reversed(newList))
                 #print("++",newList)
+                workingList = []
                 for i in newList:
-                    if i != 'S':
+                    if i in self.terminals:
                         workingList.append(i)
                     else:
-                        for j in list(reversed(self.productionRules[self.order[index]].right)):
+                        print(int(self.order[index]))
+                        for j in list(reversed(self.productionRules[int(self.order[index])].right)):
                             workingList.append(j)
-                        index+=1
+                        index += 1
                 self.finalTree.append(list(reversed(workingList)))
-                workingList=[]
-
 
         print("Parsing tree:", self.finalTree)
+

@@ -23,6 +23,9 @@ class Grammar:
         for line in f:
             elems = line.strip().split('->')
             rightpart = elems[1].split(' ')
+            leftpart = ""
+            for e in elems:
+                leftpart += e
             self.productionrules[count]= ProductionRule(elems[0],rightpart)
             count+=1
 

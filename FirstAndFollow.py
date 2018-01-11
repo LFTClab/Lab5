@@ -71,7 +71,7 @@ class FirstAndFollow:
         #TODO: de tratat cazul in care exista ε in lista de follow a unui nonterminal
 
         self.initFollow()
-        for nonterm in self.grammar.nonterminals:
+        for nonterm in list(reversed(self.grammar.nonterminals)):
             for i in range(0,len(self.grammar.productionrules)):
                 index = self.getIndex(self.grammar.productionrules[i].right,nonterm)
                 if index != -1:
@@ -79,7 +79,7 @@ class FirstAndFollow:
                         if self.grammar.productionrules[i].right[index+1] in self.grammar.terminals:
                             self.follow[nonterm].append(self.grammar.productionrules[i].right[index+1])
 
-        for nonterm in self.grammar.nonterminals:
+        for nonterm in list(reversed(self.grammar.nonterminals)):
             for i in range(0, len(self.grammar.productionrules)):
                 index = self.getIndex(self.grammar.productionrules[i].right, nonterm)
                 if index != -1:
