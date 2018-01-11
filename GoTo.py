@@ -256,6 +256,6 @@ class GoToGraph:
 
     def findRule(self,list,rule):
         for i in range(0, len(list)):
-            if list[i] == rule:
+            if list[i] == rule and  len(list[i].right) == len(rule.right):
                 return i
         return -1
