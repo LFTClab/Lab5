@@ -1,3 +1,4 @@
+from FinalTree import FinalTree
 from GoTo import GoTo, GoToGraph
 from ProductionRule import ProductionRule
 from States import States
@@ -43,12 +44,12 @@ def readSequence(fileName):
     return l
 
 if __name__ == '__main__':
-    g = Grammar("input2.txt")
+    g = Grammar("input.txt")
     graph = GoToGraph(g)
     print("+++++++++++++++++++++++++++")
     #print(graph.nextIterations)
     #print(graph.derivatedFrom)
-    #print(graph.iterationList)
+    print(graph.iterationList)
     states = States(g.nonterminals, g.terminals)
     table = Table(states, graph)
     #   transition(3 lists - working stack($0), sequence, production rules)
@@ -62,4 +63,5 @@ if __name__ == '__main__':
         print(result)
     else:
         print("ACC", result)
+        ft = FinalTree(g,checker)
 

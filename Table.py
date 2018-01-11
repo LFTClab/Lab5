@@ -36,5 +36,7 @@ class Table:
             if shift == False:
                 self.table[look_for].row[self.states.dolar] = 'acc'
 
-        print(self.table)
+        print("TABLE")
+        for i in self.table:
+            print(i , self.table[i])
 

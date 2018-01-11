@@ -13,6 +13,7 @@ class Checker:
 
         print(self.workingStack, self.input)
 
+
     def parse(self):
         #verify working stack has a production rule
         while True:
@@ -56,3 +57,4 @@ class Checker:
                 letter = self.table.table[self.workingStack[-1]].row[self.input[0]]
                 if letter == 'acc':
                     return 'acc'
+
