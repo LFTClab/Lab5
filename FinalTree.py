@@ -24,15 +24,20 @@ class FinalTree:
                 newList = list(reversed(newList))
                 #print("++",newList)
                 workingList = []
+                first = False
                 for i in newList:
                     if i in self.terminals:
                         workingList.append(i)
-                    else:
-                        print(int(self.order[index]))
+                    elif first == False :
                         for j in list(reversed(self.productionRules[int(self.order[index])].right)):
                             workingList.append(j)
                         index += 1
+                        first = True
+                    elif first == True:
+                        workingList.append(i)
                 self.finalTree.append(list(reversed(workingList)))
 
-        print("Parsing tree:", self.finalTree)
+        print("Parsing tree:")
+        for i in self.finalTree:
+            print(i)
 

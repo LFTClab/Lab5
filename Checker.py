@@ -24,7 +24,6 @@ class Checker:
             reduce = False
             listP = []
             for item in reversed(self.workingStack):
-                # print(item)
                 if item in self.table.states.row.keys():
                     # print(item)
                     productionRule.right.insert(0, item)
@@ -32,19 +31,11 @@ class Checker:
                     for i in self.table.graph.grammar.productionrules:
                         production = self.table.graph.grammar.productionrules[i]
                         if productionRule.right == production.right and i != 0:
-                            # print("prod.rule", productionRule.right)
                             pr = copy.deepcopy(productionRule.right)
                             lr = copy.deepcopy(production.left)
                             listP.append((pr,lr))
-                            # print("if",listP)
 
-                            # self.input.pop(0)
-            print("litp", listP)
             prod = self.getMaxList(listP)
-            left = ""
-            id = 0
-
-            print("pp",prod)
             for i in self.table.graph.grammar.productionrules:
                 production = self.table.graph.grammar.productionrules[i]
                 if prod == production.right and i != 0:
@@ -74,7 +65,7 @@ class Checker:
                             if toAdd == '' and howMany == 0:
                                 return "error"
                             if toAdd == '' :
-                               print("Dsadada")
+                               pass
                             elif toAdd != 'acc':
                                 del self.workingStack[(len(self.workingStack) - count):(len(self.workingStack))]
                                 self.workingStack.append(left)
@@ -86,18 +77,15 @@ class Checker:
                                 print(self.workingStack, self.input, self.prodRules)
                                 return "acc2"
 
-
                         elif (self.table.table[self.workingStack[-1]].row[self.input[0]][0] == 'r'):
                             cifra = self.workingStack[-count-1]
                             left = prod[1]
-                            print("led", left)
                             toAdd = self.table.table[cifra].row[left]
-                            print("here", toAdd)
                             rule = self.table.table[self.workingStack[-1]].row[self.input[0]][1:]
                             if toAdd == '' and howMany == 0:
                                 return "error"
                             if toAdd == '' :
-                               print("Dsadada")
+                               pass
                             elif toAdd != 'acc':
                                 del self.workingStack[(len(self.workingStack) - count):(len(self.workingStack))]
                                 self.workingStack.append(left)
